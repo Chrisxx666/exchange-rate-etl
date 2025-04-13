@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# VS Code / PyCharm settings
+.vscode/
+.idea/
+
+# Data files
+data/

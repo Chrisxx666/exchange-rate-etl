@@ -1,5 +1,7 @@
 # Exchange Rate ETL Pipeline
 
+![Project Cover](images/image.png)
+
 This project implements a complete ETL (Extract, Transform, Load) pipeline in Python. It retrieves real-time exchange rate data from a public API, transforms it into a structured format using pandas, and loads the data into both a MySQL database and a local CSV file.
 
 ## Project Structure
