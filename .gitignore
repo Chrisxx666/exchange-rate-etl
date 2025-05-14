@@ -13,3 +13,8 @@ venv/
 
 # Data files
 data/
+
+.env
+.env.docker
+
+.DS_Store
