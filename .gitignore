@@ -14,7 +14,7 @@ venv/
 # Data files
 data/
 
+# 本地環境變量檔案（通常含有敏感資訊）
 .env
-.env.docker
 
 .DS_Store

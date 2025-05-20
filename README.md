@@ -1,37 +1,101 @@
-# Exchange Rate ETL Pipeline
-
 ![Project Cover](images/image.png)
 
-This project implements a complete ETL (Extract, Transform, Load) pipeline in Python. It retrieves real-time exchange rate data from a public API, transforms it into a structured format using pandas, and loads the data into both a MySQL database and a local CSV file.
+# Exchange Rate ETL Project
 
-## Project Structure
-exchange-rate-etl/ ├── etl/ │ ├── extract.py │ ├── transform.py │ ├── load.py ├── data/ │ └── exchange_rates.csv ├── main.py ├── requirements.txt ├── schema.sql ├── .gitignore ├── README.md
+### 🔍 Project Overview | 工程預覽
 
-## Features
+A modular ETL (Extract-Transform-Load) pipeline that fetches daily exchange rate data from an API, transforms it using pandas, and stores the result into both a CSV file and a MySQL database. Designed with scalability, automation, and future deployment in mind.
 
-- Fetches exchange rate data from https://exchangerate.host
-- Transforms JSON response into a structured DataFrame
-- Saves the output to:
-  - A local CSV file (`data/exchange_rates.csv`)
-  - A MySQL table (`exchange_db.exchange_rates`)
-- Modular code structure (extract / transform / load)
+這是一個基於 Python 的自動化貿易治策系統，自動據 API 擱取幣別平價，轉換資料，庫存於 MySQL 與 CSV，擁有優化綱絡、設定可移植化、適合 Docker 部署與零件訓練使用。
 
-## Installation
+---
 
-1. Clone this repository and navigate to the project folder.
+## 🔄 ETL Workflow Structure
 
-2. Create a virtual environment and activate it:
+```
+exchange-rate-etl/
+├── main.py                # Entry point to run the ETL pipeline
+├── etl/
+│   ├── extract.py        # Fetches raw exchange rate data via API
+│   ├── transform.py      # Normalizes, flattens, and cleans the data
+│   └── load.py           # Saves the data to CSV and MySQL
+├── .env                  # Secure DB credentials (not committed to Git)
+├── requirements.txt      # Python dependency list
+├── Dockerfile (planned)  # To containerize the ETL process
+└── README.md             # Project documentation (this file)
+```
+
+---
+
+## ⚙️ How to Use | 使用指南
+
+### 1. Install dependencies
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # For Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-## MySQL Setup
+### 2. Setup environment variables
 
-1. Ensure MySQL Server is installed and running locally.
+Create a `.env` file:
 
-2. Initialize the database and table by running the following command in your terminal:
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=exchange_db
+DB_PORT=3306
+```
+
+### 3. Run the ETL pipeline
 
 ```bash
-mysql -u root -p < schema.sql
-# exchange-rate-etl
+python main.py
+```
+
+---
+
+## 💡 Core Features | 核心特色
+
+* ✅ Modular ETL: clean separation of extract / transform / load
+* ✅ Environment-based DB connection via `.env`
+* ✅ Automatic date-based deduplication before inserting into MySQL
+* ✅ Historical data accumulation supported (`append` mode)
+* ✅ Logging-based status tracking
+* ✅ Easy integration with Docker and cron (for automation)
+
+---
+
+## 📊 Data Sample | 資料格式
+
+| base\_currency | date       | currency | rate  |
+| -------------- | ---------- | -------- | ----- |
+| USD            | 2025-05-14 | EUR      | 0.91  |
+| USD            | 2025-05-14 | JPY      | 153.2 |
+
+---
+
+## 🚀 Future Extensions | 展望擴充
+
+* [ ] ⏰ Add `schedule` or `cron` to run daily
+* [ ] 🌐 Add Plotly visualizations for rate trends
+* [ ] 📧 Auto-email reports of latest rates (CSV + summary)
+* [ ] 🚧 Create `Dockerfile` for full containerized deployment
+* [ ] 💾 Add GitHub Actions CI to run automated tests on push
+
+---
+
+## 📈 Tech Stack
+
+* Python 3.12+
+* pandas, requests
+* sqlalchemy + PyMySQL
+* dotenv
+* MySQL 8+
+
+---
+
+## 📢 Contribution / Contact
+
+Maintained by **Chris (Cyril Tsai)**
+Feel free to fork, submit pull requests, or reach out for collaboration!

@@ -1,23 +1,29 @@
 import pandas as pd
+import logging
 
-def  transform_data(data):
+def transform_data(data):
     """
-    Transform raw exchange rate JSON data into clean pandas DataFrame
+    Transform raw exchange rate JSON data into a clean pandas DataFrame
+    將原始 JSON 匯率資料轉換成 pandas DataFrame，便於儲存與分析
     """
     if data is None:
-        # Return an empty DataFrame if no data was received
+        logging.warning("No data received for transformation. Returning empty DataFrame.")
         return pd.DataFrame()
 
     rates = data.get("rates", {})
-    # 從 JSON 中取出「幣別匯率」的 dict{}
-    # Get the "rates" dictionary from the JSON data
+    if not rates:
+        logging.warning("No exchange rates found in the data.")
+        return pd.DataFrame()
 
-    df = pd.DataFrame(rates.items(), columns = ["currency", "rate"])
-    # 把 dict 轉為二欄 DataFrame：貨幣代碼 + 匯率
-    # Convert the rates dict into a DataFrame with two columns
+    # 將「幣別匯率」轉成兩欄格式：currency、rate
+    df = pd.DataFrame(rates.items(), columns=["currency", "rate"])
 
-    # Add two extra columns: base currency and date
-    df["base_currency"] = data.get("base", "USD") # 加入匯率的基準貨幣（USD）
-    df["date"] = data.get("date", "") # 加入日期欄位（追蹤匯率是哪一天的）
+    # 加入原始資料中的 base_currency 與日期資訊
+    df["base_currency"] = data.get("base", "USD")
+    df["date"] = data.get("date", "")
 
+    # 調整欄位順序，讓資料更有邏輯性
+    df = df[["base_currency", "date", "currency", "rate"]]
+
+    logging.info(f"Transformed {len(df)} exchange rate records.")
     return df
