@@ -1,0 +1,14 @@
+apiVersion: 1
+
+datasources:
+  - name: MySQL
+    type: mysql
+    url: mysql:3306
+    database: exchange_db
+    user: root
+    secureJsonData:
+      password: Chrisxx666
+    jsonData:
+      maxOpenConns: 0
+      maxIdleConns: 2
+      connMaxLifetime: 14400
