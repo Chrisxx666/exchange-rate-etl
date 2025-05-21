@@ -1,6 +1,6 @@
 # Exchange Rate ETL System
 
-![Project Cover](images/image.png)
+![Project Cover](images/666.png)
 
 ## 🔍 Project Overview | 專案概述
 
