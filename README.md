@@ -177,8 +177,8 @@ Implements intelligent scheduling with:
 
 ## 📢 Maintainer Information | 維護者資訊
 
-Designed and implemented by **Chris (Cyril Tsai)** 
-設計與實作：**Chris (Cyril Tsai)**
+Designed and implemented by **Cyril Tsai** 
+設計與實作：**Cyril Tsai**
 
 Project demonstrates expertise in:
 專案展示的專業知識領域：
