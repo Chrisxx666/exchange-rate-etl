@@ -26,7 +26,7 @@ exchange-rate-etl/
 ├── schema.sql            # Database schema definition | 資料庫結構定義
 ├── run.daily.py          # Automated execution scheduler | 自動化執行排程器
 ├── requirements.txt      # Dependency management | 相依性管理
-└── .env.docker          # Environment configuration (containerized) | 環境配置 (容器化)
+└── .env.docker           # Environment configuration (containerized) | 環境配置 (容器化)
 ```
 
 ---
